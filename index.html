@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sharafat | Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+  if (document.documentElement.classList.contains('dark')) {
+    localStorage.theme = 'dark';
+  } else {
+    localStorage.theme = 'light';
+  }
+}
+</script>
+
+<style>
+/* small animations */
+.fade-up { transform: translateY(12px); opacity: 0; transition: all 0.6s cubic-bezier(.2,.9,.2,1); }
+.fade-up.show { transform: translateY(0); opacity: 1; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(2,6,23,0.1); }
+</style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-gray-100">
+
+<nav class="border-b dark:border-gray-700 py-4 bg-white/60 dark:bg-slate-900/60 backdrop-blur">
+  <div class="max-w-6xl mx-auto flex items-center justify-between px-6">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="assets/logo.svg" alt="Sharafat" class="h-8"/>
+    </a>
+
+    <div class="flex items-center gap-6 text-gray-700 dark:text-gray-300">
+      <a href="projects.html" class="hover:text-black dark:hover:text-white transition">Projects</a>
+      <a href="about.html" class="hover:text-black dark:hover:text-white transition">About</a>
+      <a href="contact.html" class="hover:text-black dark:hover:text-white transition">Contact</a>
+
+      <button onclick="toggleTheme()" aria-label="Toggle theme" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800 transition">
+        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M10 2a.75.75 0 01.75.75V4a.75.75 0 01-1.5 0V2.75A.75.75 0 0110 2zM15.657 4.343a.75.75 0 011.06 1.06l-1.06 1.06a.75.75 0 11-1.06-1.06l1.06-1.06zM18 10a.75.75 0 01.75.75H16a.75.75 0 010-1.5h2.75A.75.75 0 0118 10zM15.657 15.657a.75.75 0 10-1.06 1.06l1.06-1.06zM10 16a.75.75 0 01.75.75V18a.75.75 0 01-1.5 0v-1.25A.75.75 0 0110 16zM4.343 15.657a.75.75 0 10-1.06-1.06l1.06 1.06zM2 10a.75.75 0 01.75-.75H4a.75.75 0 010 1.5H2.75A.75.75 0 012 10zM4.343 4.343a.75.75 0 111.06-1.06L4.343 4.343z" />
+          <path d="M10 5.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<main class="max-w-6xl mx-auto px-6">
+  <!-- Hero -->
+  <section class="grid md:grid-cols-3 gap-8 items-center py-20">
+    <div class="md:col-span-2">
+      <h1 class="text-4xl md:text-5xl font-extrabold">Hi, I’m <span class="text-sky-600 dark:text-sky-400">Sharafat</span></h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
+        Full-stack Developer & Designer. I build web applications with Laravel, React and modern tools.
+      </p>
+
+      <div class="mt-6 flex gap-3">
+        <a href="projects.html" class="inline-flex items-center gap-2 px-5 py-3 bg-sky-600 text-white rounded-md shadow hover:opacity-95 transition">
+          View Projects
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-3 border rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+          Contact me
+        </a>
+      </div>
+
+      <div class="mt-8">
+        <h3 class="font-semibold mb-3">Skills</h3>
+        <div class="flex gap-2 flex-wrap">
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Laravel</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">React</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Next.js</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Tailwind</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Bootstrap</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Redis</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avatar -->
+    <div class="flex justify-center md:justify-end">
+      <div class="w-56 h-56 rounded-full overflow-hidden ring-4 ring-slate-100 dark:ring-slate-800 shadow-lg fade-up" id="avatar">
+        <img src="assets/avatar.png" alt="Sharafat" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects preview -->
+  <section class="py-12">
+    <h2 class="text-2xl font-semibold mb-6">Selected Projects</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- cards -->
+      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
+        <h3 class="font-semibold">Vehicle Income System</h3>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">Full system for revenue & transport management.</p>
+        <div class="flex gap-2 mt-3">
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Laravel</span>
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">MySQL</span>
+        </div>
+      </div>
+
+      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
+        <h3 class="font-semibold">Real-time Chat App</h3>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">Chat with presence & notifications.</p>
+        <div class="flex gap-2 mt-3">
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">React</span>
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Redis</span>
+        </div>
+      </div>
+
+      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
+        <h3 class="font-semibold">Dashboard & Analytics</h3>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">Interactive dashboards for admins.</p>
+        <div class="flex gap-2 mt-3">
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">React</span>
+          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Charting</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-12 text-center">
+    <div class="p-8 rounded-xl border inline-block bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900">
+      <h3 class="text-xl font-semibold">Want a site like this?</h3>
+      <p class="text-gray-600 dark:text-gray-300 mt-2">I can customize or deploy it for you.</p>
+      <a href="contact.html" class="mt-4 inline-block px-6 py-3 bg-sky-600 text-white rounded-md">Get in touch</a>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t dark:border-slate-700 py-6 mt-12">
+  <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-600 dark:text-gray-400">
+    © 2025 Sharafat — Built with Tailwind
+  </div>
+</footer>
+
+<script>
+// simple reveal animation
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function(){{ document.getElementById('avatar').classList.add('show'); }}, 150);
+});
+</script>
+</body>
+</html>
