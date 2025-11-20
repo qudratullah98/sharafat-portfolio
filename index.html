@@ -20,7 +20,6 @@ function toggleTheme() {
   }
 }
 </script>
-
 <style>
 /* small animations */
 .fade-up { transform: translateY(12px); opacity: 0; transition: all 0.6s cubic-bezier(.2,.9,.2,1); }
@@ -30,6 +29,7 @@ function toggleTheme() {
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-gray-100">
 
+<!-- Navigation -->
 <nav class="border-b dark:border-gray-700 py-4 bg-white/60 dark:bg-slate-900/60 backdrop-blur">
   <div class="max-w-6xl mx-auto flex items-center justify-between px-6">
     <a href="index.html" class="flex items-center gap-3">
@@ -37,9 +37,9 @@ function toggleTheme() {
     </a>
 
     <div class="flex items-center gap-6 text-gray-700 dark:text-gray-300">
-      <a href="projects.html" class="hover:text-black dark:hover:text-white transition">Projects</a>
-      <a href="about.html" class="hover:text-black dark:hover:text-white transition">About</a>
-      <a href="contact.html" class="hover:text-black dark:hover:text-white transition">Contact</a>
+      <a href="#projects" class="hover:text-black dark:hover:text-white transition">Projects</a>
+      <a href="#about" class="hover:text-black dark:hover:text-white transition">About</a>
+      <a href="#contact" class="hover:text-black dark:hover:text-white transition">Contact</a>
 
       <button onclick="toggleTheme()" aria-label="Toggle theme" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800 transition">
         <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor">
@@ -51,29 +51,34 @@ function toggleTheme() {
   </div>
 </nav>
 
-
 <main class="max-w-6xl mx-auto px-6">
+
   <!-- Hero -->
   <section class="grid md:grid-cols-3 gap-8 items-center py-20">
     <div class="md:col-span-2">
-      <h1 class="text-4xl md:text-5xl font-extrabold">Hi, I’m <span class="text-sky-600 dark:text-sky-400">Sharafat</span></h1>
+      <h1 class="text-4xl md:text-5xl font-extrabold">Hi, I’m <span class="text-sky-600 dark:text-sky-400"> Qudratullah Sharafat</span></h1>
       <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
-        Full-stack Developer & Designer. I build web applications with Laravel, React and modern tools.
+        Full-stack Developer & Designer. I build secure, scalable web applications with Laravel, React, Next.js, and modern tools.
       </p>
 
       <div class="mt-6 flex gap-3">
-        <a href="projects.html" class="inline-flex items-center gap-2 px-5 py-3 bg-sky-600 text-white rounded-md shadow hover:opacity-95 transition">
-          View Projects
-        </a>
-        <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-3 border rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition">
-          Contact me
-        </a>
+        <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 bg-sky-600 text-white rounded-md shadow hover:opacity-95 transition">View Projects</a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 border rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition">Contact me</a>
       </div>
 
       <div class="mt-8">
         <h3 class="font-semibold mb-3">Skills</h3>
         <div class="flex gap-2 flex-wrap">
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Laravel</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">React</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Next.js</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Tailwind</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Bootstrap</span><span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Redis</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Laravel</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">React</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Next.js</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Tailwind</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">MySQL</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Firebase</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">GraphQL</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">REST APIs</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Linux Server</span>
+          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Git & GitHub</span>
         </div>
       </div>
     </div>
@@ -86,11 +91,98 @@ function toggleTheme() {
     </div>
   </section>
 
-  <!-- Projects preview -->
-  <section class="py-12">
-    <h2 class="text-2xl font-semibold mb-6">Selected Projects</h2>
+ <!-- About Me Section -->
+<section class="py-20 bg-gray-50 dark:bg-slate-800" id="about">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-4 text-center max-w-3xl mx-auto">
+      I am <strong>Qudratullah Sharafat</strong>, a Full-stack Software Developer with 5+ years of experience
+      working with <strong>Laravel, React, Next.js, Vue.js, Tailwind CSS</strong>, and more. I build secure,
+      scalable, and modern web systems for government and private organizations.
+    </p>
+    <p class="text-gray-700 dark:text-gray-300 mb-6 text-center max-w-3xl mx-auto">
+      I have contributed to full project cycles—including design, development, deployment, testing, 
+      and maintenance—at the Ministry of Interior, Ministry of Transport, Entire Thinker, and Mumtaz Eagle.
+    </p>
+
+    <!-- CV & Cover Letter Buttons -->
+    <div class="flex justify-center gap-3 mb-12">
+      <a href="assets/pdf/CV.pdf" class="px-5 py-3 bg-sky-600 text-white rounded-md hover:opacity-95 transition">Download CV</a>
+      <a href="assets/pdf/CoverLetter.pdf" class="px-5 py-3 bg-green-600 text-white rounded-md hover:opacity-95 transition">Download Cover Letter</a>
+    </div>
+
+    <!-- Education -->
+    <h3 class="text-2xl font-semibold mt-10 mb-4">Education</h3>
+    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-12">
+      <li>Kandahar University – Computer Science (2021), Kandahar, Afghanistan</li>
+      <li>Qala-e-Kashif – High School (2016), Kabul, Afghanistan</li>
+    </ul>
+
+    <!-- Work Experience & Projects -->
+    <h3 class="text-2xl font-semibold mb-6">Work Experience & Projects</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Ministry of Interior -->
+      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
+        <img src="assets/projects/ministry-interior.jpg" alt="Ministry of Interior" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
+        <div>
+          <h4 class="font-bold text-lg">Ministry of Interior (2022–2024)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, jQuery, MySQL, Bootstrap</p>
+          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
+            <li>Implemented HR modules & role-based access</li>
+            <li>Improved payment accuracy and eliminated manual processing</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Entire Thinker -->
+      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
+        <img src="assets/projects/entire-thinker.jpg" alt="Entire Thinker" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
+        <div>
+          <h4 class="font-bold text-lg">Entire Thinker (2021–2022)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, jQuery, MySQL, Tailwind CSS</p>
+          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
+            <li>Developed inventory, invoicing, sales & accounting modules</li>
+            <li>Created reporting dashboard & multi-branch support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mumtaz Eagle -->
+      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
+        <img src="assets/projects/mumtaz-eagle.jpg" alt="Mumtaz Eagle" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
+        <div>
+          <h4 class="font-bold text-lg">Mumtaz Eagle (2024)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> React, Socket.io, Laravel API, MySQL</p>
+          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
+            <li>Built real-time private & group chat</li>
+            <li>User presence, notifications, media share & typing status</li>
+            <li>Designed modern UI & optimized chat performance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ministry of Transport -->
+      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
+        <img src="assets/projects/ministry-transport.jpg" alt="Ministry of Transport" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
+        <div>
+          <h4 class="font-bold text-lg">Ministry of Transport (2024–Present)</h4>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, Next.js, MySQL, Tailwind CSS, Redis</p>
+          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
+            <li>Digitized vehicle income collection & reporting</li>
+            <li>Real-time ticketing & automated income tracking</li>
+            <li>Reduced paper-based workflow & increased transparency</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Selected Projects Preview -->
+  <section class="py-12" id="projects">
+    <h2 class="text-2xl font-semibold mb-6"> Projects</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <!-- cards -->
       <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
         <h3 class="font-semibold">Vehicle Income System</h3>
         <p class="text-gray-600 dark:text-gray-300 mt-2">Full system for revenue & transport management.</p>
@@ -99,7 +191,6 @@ function toggleTheme() {
           <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">MySQL</span>
         </div>
       </div>
-
       <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
         <h3 class="font-semibold">Real-time Chat App</h3>
         <p class="text-gray-600 dark:text-gray-300 mt-2">Chat with presence & notifications.</p>
@@ -108,7 +199,6 @@ function toggleTheme() {
           <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Redis</span>
         </div>
       </div>
-
       <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
         <h3 class="font-semibold">Dashboard & Analytics</h3>
         <p class="text-gray-600 dark:text-gray-300 mt-2">Interactive dashboards for admins.</p>
@@ -120,16 +210,91 @@ function toggleTheme() {
     </div>
   </section>
 
+  <!-- Contact Snippet -->
+  <section class="py-16 bg-gray-50 dark:bg-slate-800" id="contact">
+  <h2 class="text-3xl font-bold mb-12 text-center">Get in Touch</h2>
+
+  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+    <!-- Contact Info Cards -->
+    <div class="space-y-6">
+      <!-- Email -->
+      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <svg class="w-7 h-7 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 2v12h16V6H4zm8 5l8-5H4l8 5z"></path>
+        </svg>
+        <p class="text-gray-700 dark:text-gray-200"><strong>Email:</strong> 
+          <a href="mailto:qsharafat98@gmail.com" class="text-blue-500 hover:underline">qsharafat98@gmail.com</a>
+        </p>
+      </div>
+
+      <!-- Phone -->
+      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <svg class="w-7 h-7 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 01-1 1C9.16 21 3 14.84 3 7a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.74 3.88.12.27.06.59-.21 1.11l-2.2 2.2z"></path>
+        </svg>
+        <p class="text-gray-700 dark:text-gray-200"><strong>Phone:</strong> 
+          <a href="tel:+93777519737" class="text-blue-500 hover:underline">+93-777519737</a>
+        </p>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <svg class="w-7 h-7 text-blue-700 dark:text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.6c0-1.338-1.099-2.437-2.437-2.437s-2.437 1.099-2.437 2.437v5.6h-3v-10h3v1.354c.753-1.123 2.117-1.354 3.437-1.354 2.481 0 4 1.756 4 4.927v5.073z"/>
+        </svg>
+        <p class="text-gray-700 dark:text-gray-200"><strong>LinkedIn:</strong> 
+          <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="text-blue-500 hover:underline">Profile</a>
+        </p>
+      </div>
+
+      <!-- GitHub -->
+      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <svg class="w-7 h-7 text-gray-800 dark:text-gray-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.753-1.333-1.753-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.524.116-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.652.242 2.873.118 3.176.77.84 1.234 1.91 1.234 3.22 0 4.609-2.807 5.625-5.479 5.921.43.37.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.218.694.825.576C20.565 21.798 24 17.302 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <p class="text-gray-700 dark:text-gray-200"><strong>GitHub:</strong> 
+          <a href="https://github.com/qudratullah98" target="_blank" class="text-blue-500 hover:underline">Profile</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Languages & Hobbies -->
+    <div class="space-y-6">
+      <div class="bg-white/70 dark:bg-slate-900/70 p-6 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <h3 class="text-xl font-semibold mb-4">Languages</h3>
+        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
+          <li>English</li>
+          <li>Pashto</li>
+          <li>Dari</li>
+        </ul>
+      </div>
+      <div class="bg-white/70 dark:bg-slate-900/70 p-6 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
+        <h3 class="text-xl font-semibold mb-4">Hobbies</h3>
+        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
+          <li>Reading</li>
+          <li>Writing</li>
+          <li>Traveling</li>
+          <li>Football</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <!-- CTA -->
   <section class="py-12 text-center">
     <div class="p-8 rounded-xl border inline-block bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900">
       <h3 class="text-xl font-semibold">Want a site like this?</h3>
       <p class="text-gray-600 dark:text-gray-300 mt-2">I can customize or deploy it for you.</p>
-      <a href="contact.html" class="mt-4 inline-block px-6 py-3 bg-sky-600 text-white rounded-md">Get in touch</a>
+      <a href="#contact" class="mt-4 inline-block px-6 py-3 bg-sky-600 text-white rounded-md">Get in touch</a>
     </div>
   </section>
+
 </main>
 
+<!-- Footer -->
 <footer class="border-t dark:border-slate-700 py-6 mt-12">
   <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-600 dark:text-gray-400">
     © 2025 Sharafat — Built with Tailwind
@@ -139,7 +304,7 @@ function toggleTheme() {
 <script>
 // simple reveal animation
 document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function(){{ document.getElementById('avatar').classList.add('show'); }}, 150);
+  setTimeout(function(){ document.getElementById('avatar').classList.add('show'); }, 150);
 });
 </script>
 </body>
