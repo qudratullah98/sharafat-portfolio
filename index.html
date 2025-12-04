@@ -1,311 +1,1181 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sharafat | Portfolio</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
-}
-function toggleTheme() {
-  document.documentElement.classList.toggle('dark');
-  if (document.documentElement.classList.contains('dark')) {
-    localStorage.theme = 'dark';
-  } else {
-    localStorage.theme = 'light';
-  }
-}
-</script>
-<style>
-/* small animations */
-.fade-up { transform: translateY(12px); opacity: 0; transition: all 0.6s cubic-bezier(.2,.9,.2,1); }
-.fade-up.show { transform: translateY(0); opacity: 1; }
-.card-hover:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(2,6,23,0.1); }
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Qudratullah Sharafat - Expert Full-stack Developer specializing in Laravel, React, Next.js & modern web technologies">
+    <title>Sharafat | Expert Full-Stack Developer & Architect</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-in': 'slideIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark .glass-effect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+        
+        .dark .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #0ea5e9;
+        }
+        
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 12px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background-color: #e5e7eb;
+        }
+        
+        .dark .timeline-item:after {
+            background-color: #4b5563;
+        }
+        
+        .timeline-item:last-child:after {
+            display: none;
+        }
+        
+        .skill-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .tech-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        /* Theme toggle animation */
+        .theme-toggle path {
+            transition: transform 0.5s ease;
+        }
+        
+        .dark .theme-toggle path:nth-child(1),
+        .dark .theme-toggle path:nth-child(2) {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .dark .theme-toggle path:nth-child(3) {
+            transform: translateY(-20px);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
 </head>
-<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-gray-100">
-
-<!-- Navigation -->
-<nav class="border-b dark:border-gray-700 py-4 bg-white/60 dark:bg-slate-900/60 backdrop-blur">
-  <div class="max-w-6xl mx-auto flex items-center justify-between px-6">
-    <a href="index.html" class="flex items-center gap-3">
-      <img src="assets/logo.svg" alt="Sharafat" class="h-8"/>
-    </a>
-
-    <div class="flex items-center gap-6 text-gray-700 dark:text-gray-300">
-      <a href="#projects" class="hover:text-black dark:hover:text-white transition">Projects</a>
-      <a href="#about" class="hover:text-black dark:hover:text-white transition">About</a>
-      <a href="#contact" class="hover:text-black dark:hover:text-white transition">Contact</a>
-
-      <button onclick="toggleTheme()" aria-label="Toggle theme" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800 transition">
-        <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M10 2a.75.75 0 01.75.75V4a.75.75 0 01-1.5 0V2.75A.75.75 0 0110 2zM15.657 4.343a.75.75 0 011.06 1.06l-1.06 1.06a.75.75 0 11-1.06-1.06l1.06-1.06zM18 10a.75.75 0 01.75.75H16a.75.75 0 010-1.5h2.75A.75.75 0 0118 10zM15.657 15.657a.75.75 0 10-1.06 1.06l1.06-1.06zM10 16a.75.75 0 01.75.75V18a.75.75 0 01-1.5 0v-1.25A.75.75 0 0110 16zM4.343 15.657a.75.75 0 10-1.06-1.06l1.06 1.06zM2 10a.75.75 0 01.75-.75H4a.75.75 0 010 1.5H2.75A.75.75 0 012 10zM4.343 4.343a.75.75 0 111.06-1.06L4.343 4.343z" />
-          <path d="M10 5.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
-        </svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<main class="max-w-6xl mx-auto px-6">
-
-  <!-- Hero -->
-  <section class="grid md:grid-cols-3 gap-8 items-center py-20">
-    <div class="md:col-span-2">
-      <h1 class="text-4xl md:text-5xl font-extrabold">Hi, I’m <span class="text-sky-600 dark:text-sky-400"> Qudratullah Sharafat</span></h1>
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
-        Full-stack Developer & Designer. I build secure, scalable web applications with Laravel, React, Next.js, and modern tools.
-      </p>
-
-      <div class="mt-6 flex gap-3">
-        <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 bg-sky-600 text-white rounded-md shadow hover:opacity-95 transition">View Projects</a>
-        <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 border rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 transition">Contact me</a>
-      </div>
-
-      <div class="mt-8">
-        <h3 class="font-semibold mb-3">Skills</h3>
-        <div class="flex gap-2 flex-wrap">
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Laravel</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">React</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Next.js</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Tailwind</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">MySQL</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Firebase</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">GraphQL</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">REST APIs</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Linux Server</span>
-          <span class="px-3 py-1 bg-gray-100 dark:bg-slate-800 rounded-full text-sm">Git & GitHub</span>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-effect py-4">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center">
+                    <span class="text-white font-bold">QS</span>
+                </div>
+                <span class="font-bold text-xl">Sharafat</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="hover:text-primary-500 transition-colors">Home</a>
+                <a href="#about" class="hover:text-primary-500 transition-colors">About</a>
+                <a href="#experience" class="hover:text-primary-500 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-primary-500 transition-colors">Projects</a>
+                <a href="#skills" class="hover:text-primary-500 transition-colors">Skills</a>
+                <a href="#contact" class="hover:text-primary-500 transition-colors">Contact</a>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                
+                <a href="#contact" class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors">
+                    Hire Me
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </div>
-      </div>
-    </div>
-
-    <!-- Avatar -->
-    <div class="flex justify-center md:justify-end">
-      <div class="w-56 h-56 rounded-full overflow-hidden ring-4 ring-slate-100 dark:ring-slate-800 shadow-lg fade-up" id="avatar">
-        <img src="assets/avatar.png" alt="Sharafat" class="w-full h-full object-cover">
-      </div>
-    </div>
-  </section>
-
- <!-- About Me Section -->
-<section class="py-20 bg-gray-50 dark:bg-slate-800" id="about">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-4 text-center max-w-3xl mx-auto">
-      I am <strong>Qudratullah Sharafat</strong>, a Full-stack Software Developer with 5+ years of experience
-      working with <strong>Laravel, React, Next.js, Vue.js, Tailwind CSS</strong>, and more. I build secure,
-      scalable, and modern web systems for government and private organizations.
-    </p>
-    <p class="text-gray-700 dark:text-gray-300 mb-6 text-center max-w-3xl mx-auto">
-      I have contributed to full project cycles—including design, development, deployment, testing, 
-      and maintenance—at the Ministry of Interior, Ministry of Transport, Entire Thinker, and Mumtaz Eagle.
-    </p>
-
-    <!-- CV & Cover Letter Buttons -->
-    <div class="flex justify-center gap-3 mb-12">
-      <a href="assets/pdf/cv.pdf" class="px-5 py-3 bg-sky-600 text-white rounded-md hover:opacity-95 transition">Download CV</a>
-      <a href="assets/pdf/coverletter.pdf" class="px-5 py-3 bg-green-600 text-white rounded-md hover:opacity-95 transition">Download Cover Letter</a>
-    </div>
-
-    <!-- Education -->
-    <h3 class="text-2xl font-semibold mt-10 mb-4">Education</h3>
-    <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 mb-12">
-      <li>Kandahar University – Computer Science (2021), Kandahar, Afghanistan</li>
-      <li>Qala-e-Kashif – High School (2016), Kabul, Afghanistan</li>
-    </ul>
-
-    <!-- Work Experience & Projects -->
-    <h3 class="text-2xl font-semibold mb-6">Work Experience & Projects</h3>
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Ministry of Interior -->
-      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
-        <img src="assets/projects/ministry-interior.jpg" alt="Ministry of Interior" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
-        <div>
-          <h4 class="font-bold text-lg">Ministry of Interior (2022–2024)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, jQuery, MySQL, Bootstrap</p>
-          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
-            <li>Implemented HR modules & role-based access</li>
-            <li>Improved payment accuracy and eliminated manual processing</li>
-          </ul>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 glass-effect p-6 md:hidden">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-bold text-xl">Menu</span>
+                <button id="close-menu" class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="py-2 hover:text-primary-500 transition-colors">Home</a>
+                <a href="#about" class="py-2 hover:text-primary-500 transition-colors">About</a>
+                <a href="#experience" class="py-2 hover:text-primary-500 transition-colors">Experience</a>
+                <a href="#projects" class="py-2 hover:text-primary-500 transition-colors">Projects</a>
+                <a href="#skills" class="py-2 hover:text-primary-500 transition-colors">Skills</a>
+                <a href="#contact" class="py-2 hover:text-primary-500 transition-colors">Contact</a>
+                
+                <div class="pt-4">
+                    <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Entire Thinker -->
-      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
-        <img src="assets/projects/entire-thinker.jpg" alt="Entire Thinker" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
-        <div>
-          <h4 class="font-bold text-lg">Entire Thinker (2021–2022)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, jQuery, MySQL, Tailwind CSS</p>
-          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
-            <li>Developed inventory, invoicing, sales & accounting modules</li>
-            <li>Created reporting dashboard & multi-branch support</li>
-          </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-20 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div class="lg:w-1/2 fade-in">
+                <div class="mb-4">
+                    <span class="px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium">
+                        Expert Full-Stack Developer
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text">Qudratullah Sharafat</span>
+                </h1>
+                
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl">
+                    I architect and build secure, scalable web applications with Laravel, React, Next.js, and modern cloud technologies. With 5+ years of experience delivering solutions for government and enterprise clients.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors flex items-center">
+                        <i class="fas fa-rocket mr-2"></i> View Projects
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center">
+                        <i class="fas fa-envelope mr-2"></i> Contact Me
+                    </a>
+                    <a href="assets/pdf/cv.pdf" class="px-6 py-3 bg-gray-100 dark:bg-gray-800 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center space-x-6">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500"></div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500"></div>
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-500"></div>
+                        </div>
+                        <span class="ml-3 text-sm text-gray-600 dark:text-gray-400">Trusted by 50+ clients</span>
+                    </div>
+                    
+                    <div class="hidden md:flex items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-white dark:border-gray-800 flex items-center justify-center bg-green-100 dark:bg-green-900/30">
+                            <i class="fas fa-check text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <span class="ml-3 text-sm text-gray-600 dark:text-gray-400">15+ projects delivered</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:w-1/2 flex justify-center fade-in stagger-1">
+                <div class="relative">
+                    <div class="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl">
+                        <img src="./assets/1727151492927.jpg" alt="Qudratullah Sharafat" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Floating elements -->
+                    <div class="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-cyan-400 flex items-center justify-center shadow-lg animate-float">
+                        <i class="fas fa-code text-white"></i>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center shadow-lg animate-float" style="animation-delay: 2s;">
+                        <i class="fas fa-server text-white"></i>
+                    </div>
+                    
+                    <div class="absolute top-1/2 -right-12 w-14 h-14 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center shadow-lg animate-float" style="animation-delay: 4s;">
+                        <i class="fas fa-palette text-white"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Mumtaz Eagle -->
-      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
-        <img src="assets/projects/mumtaz-eagle.jpg" alt="Mumtaz Eagle" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
-        <div>
-          <h4 class="font-bold text-lg">Mumtaz Eagle (2024)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> React, Socket.io, Laravel API, MySQL</p>
-          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
-            <li>Built real-time private & group chat</li>
-            <li>User presence, notifications, media share & typing status</li>
-            <li>Designed modern UI & optimized chat performance</li>
-          </ul>
+    </section>
+    
+    <div class="section-divider my-12 max-w-7xl mx-auto"></div>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Full-stack software architect with expertise in building enterprise-grade applications
+            </p>
         </div>
-      </div>
-
-      <!-- Ministry of Transport -->
-      <div class="bg-white/60 dark:bg-slate-900/60 p-4 rounded shadow card-hover flex gap-4 items-start transition-transform hover:scale-105">
-        <img src="assets/projects/ministry-transport.jpg" alt="Ministry of Transport" class="w-24 h-24 rounded-lg object-cover flex-shrink-0">
-        <div>
-          <h4 class="font-bold text-lg">Ministry of Transport (2024–Present)</h4>
-          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Technologies:</strong> Laravel, Next.js, MySQL, Tailwind CSS, Redis</p>
-          <ul class="list-disc pl-5 mt-2 text-gray-700 dark:text-gray-300">
-            <li>Digitized vehicle income collection & reporting</li>
-            <li>Real-time ticketing & automated income tracking</li>
-            <li>Reduced paper-based workflow & increased transparency</li>
-          </ul>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl card-hover fade-in stagger-1">
+                <div class="skill-icon bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 mx-auto">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-center">Full-Stack Development</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-center">
+                    End-to-end development from concept to deployment with modern frameworks and best practices.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl card-hover fade-in stagger-2">
+                <div class="skill-icon bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mx-auto">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-center">System Architecture</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-center">
+                    Designing scalable, secure architectures optimized for performance and maintainability.
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl card-hover fade-in stagger-3">
+                <div class="skill-icon bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mx-auto">
+                    <i class="fas fa-users-gear"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-center">Team Leadership</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-center">
+                    Leading development teams through complete project lifecycles with agile methodologies.
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Selected Projects Preview -->
-  <section class="py-12" id="projects">
-    <h2 class="text-2xl font-semibold mb-6"> Projects</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
-        <h3 class="font-semibold">Vehicle Income System</h3>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">Full system for revenue & transport management.</p>
-        <div class="flex gap-2 mt-3">
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Laravel</span>
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">MySQL</span>
+        
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <h3 class="text-2xl font-bold mb-6">Professional Journey</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    I am <strong>Qudratullah Sharafat</strong>, a full-stack software architect with 5+ years of experience building secure, scalable web systems for government and private organizations.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 mb-6">
+                    My expertise spans the entire development lifecycle—from requirement analysis and system design to development, testing, deployment, and maintenance. I specialize in creating solutions that improve efficiency, transparency, and user experience.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-calendar-check text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">5+ Years</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Experience</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-briefcase text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">15+ Projects</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Completed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-3">
+                            <i class="fas fa-award text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold">4 Organizations</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Served</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl fade-in stagger-1">
+                <h3 class="text-xl font-bold mb-6">Education</h3>
+                
+                <div class="space-y-6">
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">Bachelor of Computer Science</h4>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Kandahar University</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2017 - 2021 | Kandahar, Afghanistan</p>
+                        <p class="mt-2 text-gray-700 dark:text-gray-300">Graduated with focus on software engineering and database systems.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4 class="font-bold text-lg">High School Diploma</h4>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Qala-e-Kashif High School</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2016 | Kabul, Afghanistan</p>
+                        <p class="mt-2 text-gray-700 dark:text-gray-300">Science stream with distinction in mathematics and physics.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
-        <h3 class="font-semibold">Real-time Chat App</h3>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">Chat with presence & notifications.</p>
-        <div class="flex gap-2 mt-3">
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">React</span>
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Redis</span>
+    </section>
+    
+    <div class="section-divider my-12 max-w-7xl mx-auto"></div>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                A track record of delivering impactful solutions for government and private organizations
+            </p>
         </div>
-      </div>
-      <div class="p-5 border rounded-xl card-hover transition-transform bg-white/60 dark:bg-slate-800/60">
-        <h3 class="font-semibold">Dashboard & Analytics</h3>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">Interactive dashboards for admins.</p>
-        <div class="flex gap-2 mt-3">
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">React</span>
-          <span class="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs">Charting</span>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Ministry of Transport -->
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl card-hover fade-in">
+                <div class="flex items-start mb-6">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mr-4">
+                        <i class="fas fa-bus text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Ministry of Transport</h3>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Senior Full-Stack Developer</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2024 - Present | Kabul, Afghanistan</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Leading the digitization of vehicle income collection and reporting systems, implementing real-time ticketing and automated income tracking.
+                </p>
+                
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Key Technologies:</h4>
+                    <div class="flex flex-wrap">
+                        <span class="tech-tag bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                            <i class="fab fa-laravel mr-1"></i> Laravel
+                        </span>
+                        <span class="tech-tag bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300">
+                            <i class="fab fa-react mr-1"></i> Next.js
+                        </span>
+                        <span class="tech-tag bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">
+                            <i class="fas fa-database mr-1"></i> MySQL
+                        </span>
+                        <span class="tech-tag bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300">
+                            <i class="fas fa-bolt mr-1"></i> Redis
+                        </span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Digitized vehicle income collection & reporting</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Real-time ticketing & automated income tracking</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Reduced paper-based workflow & increased transparency</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Mumtaz Eagle -->
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl card-hover fade-in stagger-1">
+                <div class="flex items-start mb-6">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center mr-4">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Mumtaz Eagle</h3>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Full-Stack Developer</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2024 | Remote</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Built a real-time chat application with private & group messaging, user presence, notifications, and media sharing capabilities.
+                </p>
+                
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Key Technologies:</h4>
+                    <div class="flex flex-wrap">
+                        <span class="tech-tag bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                            <i class="fab fa-react mr-1"></i> React
+                        </span>
+                        <span class="tech-tag bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300">
+                            <i class="fas fa-plug mr-1"></i> Socket.io
+                        </span>
+                        <span class="tech-tag bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300">
+                            <i class="fab fa-laravel mr-1"></i> Laravel API
+                        </span>
+                        <span class="tech-tag bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">
+                            <i class="fas fa-database mr-1"></i> MySQL
+                        </span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Built real-time private & group chat with Socket.io</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Implemented user presence, notifications & typing status</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Designed modern UI & optimized chat performance</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Ministry of Interior -->
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl card-hover fade-in stagger-2">
+                <div class="flex items-start mb-6">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center mr-4">
+                        <i class="fas fa-landmark text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Ministry of Interior</h3>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Full-Stack Developer</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2022 - 2024 | Kabul, Afghanistan</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Developed HR modules with role-based access control and payment processing systems to improve accuracy and eliminate manual processing.
+                </p>
+                
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Key Technologies:</h4>
+                    <div class="flex flex-wrap">
+                        <span class="tech-tag bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300">
+                            <i class="fab fa-laravel mr-1"></i> Laravel
+                        </span>
+                        <span class="tech-tag bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                            <i class="fab fa-js mr-1"></i> jQuery
+                        </span>
+                        <span class="tech-tag bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">
+                            <i class="fas fa-database mr-1"></i> MySQL
+                        </span>
+                        <span class="tech-tag bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300">
+                            <i class="fab fa-bootstrap mr-1"></i> Bootstrap
+                        </span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Implemented HR modules & role-based access control</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Improved payment accuracy and eliminated manual processing</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Developed reporting dashboards for administration</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Entire Thinker -->
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl card-hover fade-in stagger-3">
+                <div class="flex items-start mb-6">
+                    <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center mr-4">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Entire Thinker</h3>
+                        <p class="text-primary-600 dark:text-primary-400 font-medium">Full-Stack Developer</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">2021 - 2022 | Remote</p>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    Developed a comprehensive business management system with inventory, invoicing, sales, accounting modules, and multi-branch support.
+                </p>
+                
+                <div class="mb-4">
+                    <h4 class="font-semibold mb-2">Key Technologies:</h4>
+                    <div class="flex flex-wrap">
+                        <span class="tech-tag bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300">
+                            <i class="fab fa-laravel mr-1"></i> Laravel
+                        </span>
+                        <span class="tech-tag bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                            <i class="fab fa-js mr-1"></i> jQuery
+                        </span>
+                        <span class="tech-tag bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">
+                            <i class="fas fa-database mr-1"></i> MySQL
+                        </span>
+                        <span class="tech-tag bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300">
+                            <i class="fas fa-wind mr-1"></i> Tailwind CSS
+                        </span>
+                    </div>
+                </div>
+                
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Developed inventory, invoicing, sales & accounting modules</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Created reporting dashboard & multi-branch support</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                        <span>Automated business processes for 50+ clients</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Snippet -->
-  <section class="py-16 bg-gray-50 dark:bg-slate-800" id="contact">
-  <h2 class="text-3xl font-bold mb-12 text-center">Get in Touch</h2>
-
-  <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-
-    <!-- Contact Info Cards -->
-    <div class="space-y-6">
-      <!-- Email -->
-      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <svg class="w-7 h-7 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 2v12h16V6H4zm8 5l8-5H4l8 5z"></path>
-        </svg>
-        <p class="text-gray-700 dark:text-gray-200"><strong>Email:</strong> 
-          <a href="mailto:qsharafat98@gmail.com" class="text-blue-500 hover:underline">qsharafat98@gmail.com</a>
-        </p>
-      </div>
-
-      <!-- Phone -->
-      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <svg class="w-7 h-7 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1V20a1 1 0 01-1 1C9.16 21 3 14.84 3 7a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.74 3.88.12.27.06.59-.21 1.11l-2.2 2.2z"></path>
-        </svg>
-        <p class="text-gray-700 dark:text-gray-200"><strong>Phone:</strong> 
-          <a href="tel:+93777519737" class="text-blue-500 hover:underline">+93-777519737</a>
-        </p>
-      </div>
-
-      <!-- LinkedIn -->
-      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <svg class="w-7 h-7 text-blue-700 dark:text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.6c0-1.338-1.099-2.437-2.437-2.437s-2.437 1.099-2.437 2.437v5.6h-3v-10h3v1.354c.753-1.123 2.117-1.354 3.437-1.354 2.481 0 4 1.756 4 4.927v5.073z"/>
-        </svg>
-        <p class="text-gray-700 dark:text-gray-200"><strong>LinkedIn:</strong> 
-          <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="text-blue-500 hover:underline">Profile</a>
-        </p>
-      </div>
-
-      <!-- GitHub -->
-      <div class="flex items-center gap-4 p-6 bg-white/70 dark:bg-slate-900/70 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <svg class="w-7 h-7 text-gray-800 dark:text-gray-200 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.753-1.333-1.753-1.089-.744.084-.729.084-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.835 2.807 1.305 3.492.997.108-.776.418-1.305.762-1.605-2.665-.304-5.466-1.334-5.466-5.931 0-1.31.468-2.38 1.236-3.22-.124-.303-.536-1.524.116-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.652.242 2.873.118 3.176.77.84 1.234 1.91 1.234 3.22 0 4.609-2.807 5.625-5.479 5.921.43.37.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .32.218.694.825.576C20.565 21.798 24 17.302 24 12c0-6.627-5.373-12-12-12z"/>
-        </svg>
-        <p class="text-gray-700 dark:text-gray-200"><strong>GitHub:</strong> 
-          <a href="https://github.com/qudratullah98" target="_blank" class="text-blue-500 hover:underline">Profile</a>
-        </p>
-      </div>
-    </div>
-
-    <!-- Languages & Hobbies -->
-    <div class="space-y-6">
-      <div class="bg-white/70 dark:bg-slate-900/70 p-6 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <h3 class="text-xl font-semibold mb-4">Languages</h3>
-        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
-          <li>English</li>
-          <li>Pashto</li>
-          <li>Dari</li>
-        </ul>
-      </div>
-      <div class="bg-white/70 dark:bg-slate-900/70 p-6 rounded-xl shadow-lg card-hover transition-transform hover:scale-105">
-        <h3 class="text-xl font-semibold mb-4">Hobbies</h3>
-        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-200 space-y-1">
-          <li>Reading</li>
-          <li>Writing</li>
-          <li>Traveling</li>
-          <li>Football</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <!-- CTA -->
-  <section class="py-12 text-center">
-    <div class="p-8 rounded-xl border inline-block bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900">
-      <h3 class="text-xl font-semibold">Want a site like this?</h3>
-      <p class="text-gray-600 dark:text-gray-300 mt-2">I can customize or deploy it for you.</p>
-      <a href="#contact" class="mt-4 inline-block px-6 py-3 bg-sky-600 text-white rounded-md">Get in touch</a>
-    </div>
-  </section>
-
-</main>
-
-<!-- Footer -->
-<footer class="border-t dark:border-slate-700 py-6 mt-12">
-  <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-600 dark:text-gray-400">
-    © 2025 Sharafat — Built with Tailwind
-  </div>
-</footer>
-
-<script>
-// simple reveal animation
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function(){ document.getElementById('avatar').classList.add('show'); }, 150);
-});
-</script>
+    </section>
+    
+    <div class="section-divider my-12 max-w-7xl mx-auto"></div>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Mastery of modern web technologies and development practices
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="fade-in">
+                <h3 class="text-2xl font-bold mb-6">Core Expertise</h3>
+                
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Laravel / PHP</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400">95%</span>
+                        </div>
+                        <div class="progress-bar bg-gray-200 dark:bg-gray-700">
+                            <div class="progress-bar-fill bg-gradient-to-r from-primary-500 to-cyan-500" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">React / Next.js</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400">90%</span>
+                        </div>
+                        <div class="progress-bar bg-gray-200 dark:bg-gray-700">
+                            <div class="progress-bar-fill bg-gradient-to-r from-primary-500 to-cyan-500" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">MySQL / Database Design</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400">92%</span>
+                        </div>
+                        <div class="progress-bar bg-gray-200 dark:bg-gray-700">
+                            <div class="progress-bar-fill bg-gradient-to-r from-primary-500 to-cyan-500" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">REST APIs / GraphQL</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400">88%</span>
+                        </div>
+                        <div class="progress-bar bg-gray-200 dark:bg-gray-700">
+                            <div class="progress-bar-fill bg-gradient-to-r from-primary-500 to-cyan-500" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Linux Server & Deployment</span>
+                            <span class="font-bold text-primary-600 dark:text-primary-400">85%</span>
+                        </div>
+                        <div class="progress-bar bg-gray-200 dark:bg-gray-700">
+                            <div class="progress-bar-fill bg-gradient-to-r from-primary-500 to-cyan-500" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fade-in stagger-1">
+                <h3 class="text-2xl font-bold mb-6">Technologies & Tools</h3>
+                
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-laravel text-red-500 text-3xl mb-2"></i>
+                        <p class="font-medium">Laravel</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-react text-blue-500 text-3xl mb-2"></i>
+                        <p class="font-medium">React</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-vuejs text-green-500 text-3xl mb-2"></i>
+                        <p class="font-medium">Vue.js</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-node-js text-green-600 text-3xl mb-2"></i>
+                        <p class="font-medium">Node.js</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fas fa-database text-yellow-500 text-3xl mb-2"></i>
+                        <p class="font-medium">MySQL</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-git-alt text-orange-600 text-3xl mb-2"></i>
+                        <p class="font-medium">Git</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fas fa-server text-cyan-500 text-3xl mb-2"></i>
+                        <p class="font-medium">Linux</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fab fa-docker text-blue-400 text-3xl mb-2"></i>
+                        <p class="font-medium">Docker</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl text-center">
+                        <i class="fas fa-chart-line text-purple-500 text-3xl mb-2"></i>
+                        <p class="font-medium">Chart.js</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider my-12 max-w-7xl mx-auto"></div>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Selection of impactful projects showcasing my technical capabilities
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl overflow-hidden card-hover fade-in">
+                <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-400 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-bus text-white text-6xl"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Vehicle Income System</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Comprehensive system for vehicle revenue and transport management with real-time reporting.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs">Laravel</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-xs">MySQL</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-xs">Next.js</span>
+                    </div>
+                    <a href="#" class="text-primary-600 dark:text-primary-400 font-medium hover:underline inline-flex items-center">
+                        View Details <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl overflow-hidden card-hover fade-in stagger-1">
+                <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-400 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-comments text-white text-6xl"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Real-time Chat Application</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Feature-rich chat platform with private/group messaging, file sharing, and user presence.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs">React</span>
+                        <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-xs">Socket.io</span>
+                        <span class="px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 rounded-full text-xs">Laravel API</span>
+                    </div>
+                    <a href="#" class="text-primary-600 dark:text-primary-400 font-medium hover:underline inline-flex items-center">
+                        View Details <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl overflow-hidden card-hover fade-in stagger-2">
+                <div class="h-48 bg-gradient-to-r from-green-500 to-emerald-400 relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-white text-6xl"></i>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Dashboard & Analytics</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        Interactive admin dashboards with real-time analytics, reporting, and data visualization.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs">React</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-xs">Chart.js</span>
+                        <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 rounded-full text-xs">REST API</span>
+                    </div>
+                    <a href="#" class="text-primary-600 dark:text-primary-400 font-medium hover:underline inline-flex items-center">
+                        View Details <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider my-12 max-w-7xl mx-auto"></div>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Let's discuss your next project or development opportunity
+            </p>
+        </div>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 fade-in">
+                <form id="contact-form" class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block mb-2 font-medium">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 font-medium">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="subject" class="block mb-2 font-medium">Subject</label>
+                        <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition" required>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="message" class="block mb-2 font-medium">Message</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition" required></textarea>
+                    </div>
+                    
+                    <button disabled type="submit"  class="px-6 py-3 bg-primary-200 text-white rounded-lg hover:bg-primary-700 transition-colors w-full md:w-auto">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="fade-in stagger-1">
+                <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl mb-6">
+                    <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <a href="mailto:qsharafat98@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                    qsharafat98@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Phone</p>
+                                <a href="tel:+93777519737" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                    +93-777519737
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-4">
+                                <i class="fab fa-linkedin-in text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">LinkedIn</p>
+                                <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                    Qudratullah Sharafat
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mr-4">
+                                <i class="fab fa-github text-gray-800 dark:text-gray-300"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">GitHub</p>
+                                <a href="https://github.com/qudratullah98" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                    qudratullah98
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4">Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full">English</span>
+                        <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full">Pashto</span>
+                        <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full">Dari</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="bg-gradient-to-r from-primary-500 to-cyan-500 rounded-2xl p-12 text-center text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Project?</h2>
+            <p class="text-primary-100 text-xl mb-8 max-w-2xl mx-auto">
+                Let's build something amazing together. Get in touch to discuss your ideas and requirements.
+            </p>
+            <a href="#contact" class="inline-flex items-center px-8 py-4 bg-white text-primary-700 font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                <i class="fas fa-calendar-check mr-3"></i> Schedule a Consultation
+            </a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center">
+                            <span class="text-white font-bold">QS</span>
+                        </div>
+                        <span class="font-bold text-xl">Sharafat</span>
+                    </a>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">Expert Full-Stack Developer & Architect</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="mailto:qsharafat98@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-envelope text-lg"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fab fa-linkedin-in text-lg"></i>
+                    </a>
+                    <a href="https://github.com/qudratullah98" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                    </a>
+                    <a href="tel:+93777519737" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                        <i class="fas fa-phone text-lg"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-gray-800 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
+                <p>© 2025 Qudratullah Sharafat. All rights reserved. | Built with <i class="fas fa-heart text-red-500 mx-1"></i> and modern web technologies</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-colors z-40 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        
+        function toggleTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real implementation, this would send data to a server
+            // For demo purposes, we'll just show an alert
+            alert('Thank you for your message! I will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Animate progress bars on scroll
+        const progressBars = document.querySelectorAll('.progress-bar-fill');
+        
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0';
+                    
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 300);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        progressBars.forEach(bar => {
+            progressObserver.observe(bar);
+        });
+        
+        // Initialize theme
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
