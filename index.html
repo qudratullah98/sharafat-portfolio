@@ -205,24 +205,58 @@
             transform: translateY(-20px);
         }
         
-        /* Mobile menu */
-       /* Mobile menu styles */
-.mobile-menu {
+       
+        
+
+
+
+        /* Fixed Mobile Menu Styles */
+#mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: white !important;
+    z-index: 1000;
     transform: translateX(100%);
-    transition: transform 0.3s ease-out;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    padding: 1.5rem;
 }
 
-.mobile-menu.open {
+.dark #mobile-menu {
+    background: #1f2937 !important;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+#mobile-menu.open {
     transform: translateX(0);
 }
 
 #mobile-menu-backdrop {
-    transition: opacity 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 #mobile-menu-backdrop.show {
-    display: block;
     opacity: 1;
+    visibility: visible;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
 }
     </style>
 </head>
@@ -259,78 +293,72 @@
                 </a>
             </div>
             
-         <!-- Mobile Menu Button -->
-<button id="mobile-menu-button" class="md:hidden p-2">
+           <!-- Mobile Menu Button -->
+<button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
 </button>
-
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-50 p-6 md:hidden transform translate-x-full transition-transform duration-300 ease-out">
-    <div class="flex justify-between items-center mb-8">
-        <span class="font-bold text-xl text-gray-800 dark:text-white">Menu</span>
-        <button id="close-menu" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-    </div>
-    
-    <div class="flex flex-col space-y-4">
-        <a href="#home" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-home mr-3"></i> Home
-        </a>
-        <a href="#about" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-user mr-3"></i> About
-        </a>
-        <a href="#experience" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-briefcase mr-3"></i> Experience
-        </a>
-        <a href="#projects" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-code mr-3"></i> Projects
-        </a>
-        <a href="#skills" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-cogs mr-3"></i> Skills
-        </a>
-        <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
-            <i class="fas fa-envelope mr-3"></i> Contact
-        </a>
+        </div>
         
-        <div class="pt-6 border-t border-gray-200 dark:border-gray-700 mt-4">
-            <div class="flex items-center justify-between">
-                <span class="text-gray-800 dark:text-gray-200">Theme</span>
-                <button id="mobile-theme-toggle" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                </button>
+        
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden">
+    <div class="flex flex-col h-full">
+         <div class="flex justify-between items-center mb-8 pb-4 border-b dark:border-gray-700">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">QS</span>
+                </div>
+                <span class="font-bold text-lg text-gray-900 dark:text-white">Sharafat</span>
+            </div>
+            <button id="close-menu" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+         <!-- Menu Items -->
+        <nav class="flex-1">
+            <div class="space-y-1">
+                <a href="#home" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-home w-5"></i>
+                    <span class="font-medium">Home</span>
+                </a>
+                <a href="#about" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-user w-5"></i>
+                    <span class="font-medium">About</span>
+                </a>
+                <a href="#experience" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-briefcase w-5"></i>
+                    <span class="font-medium">Experience</span>
+                </a>
+                <a href="#projects" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-code w-5"></i>
+                    <span class="font-medium">Projects</span>
+                </a>
+                <a href="#skills" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-cogs w-5"></i>
+                    <span class="font-medium">Skills</span>
+                </a>
+                <a href="#contact" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <i class="fas fa-envelope w-5"></i>
+                    <span class="font-medium">Contact</span>
+                </a>
             </div>
             
-            <a href="#contact" class="mt-6 block w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-center font-medium">
-                <i class="fas fa-paper-plane mr-2"></i> Hire Me
-            </a>
-        </div>
-    </div>
-    
-    <!-- Social Links in Mobile Menu -->
-    <div class="absolute bottom-6 left-6 right-6">
-        <div class="flex justify-center space-x-4">
-            <a href="mailto:qsharafat98@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/qudratullah98" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- Backdrop for mobile menu -->
-<div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
+            <!-- Theme Toggle -->
+            <div class="mt-8 p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
+                <div class="flex items-center justify-between">
+                    <span class="font-medium text-gray-700 dark:text-gray-300">Theme</span>
+                    <button id="mobile-theme-toggle" class="p-2 rounded-lg bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </nav>
     
     <!-- Hero Section -->
@@ -1113,41 +1141,24 @@
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
         // Mobile Menu
-       // Mobile Menu with Backdrop
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-const closeMenu = document.getElementById('close-menu');
-const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-
-function openMobileMenu() {
-    mobileMenu.classList.add('open');
-    mobileMenuBackdrop.classList.add('show');
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
-}
-
-function closeMobileMenu() {
-    mobileMenu.classList.remove('open');
-    mobileMenuBackdrop.classList.remove('show');
-    document.body.style.overflow = ''; // Re-enable scrolling
-}
-
-mobileMenuButton.addEventListener('click', openMobileMenu);
-closeMenu.addEventListener('click', closeMobileMenu);
-
-// Close menu when clicking on backdrop
-mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
-
-// Close menu when clicking on a link
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
-
-// Close menu with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        closeMobileMenu();
-    }
-});
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+        
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
         
         // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
