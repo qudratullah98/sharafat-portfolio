@@ -258,7 +258,9 @@
         </div>
         
         <!-- Mobile Menu -->
-<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 p-6 md:hidden shadow-xl">
+         <div id="overlay" class="fixed inset-0 bg-black/50 hidden md:hidden"></div>
+
+<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl p-6 md:hidden">
 
             <div class="flex justify-between items-center mb-8">
                 <span class="font-bold text-xl">Menu</span>
@@ -1067,25 +1069,27 @@
         themeToggle.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Mobile Menu
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
+      const menu = document.getElementById("mobile-menu");
+const openBtn = document.getElementById("mobile-menu-button");
+const closeBtn = document.getElementById("close-menu");
+const overlay = document.getElementById("overlay");
+
+openBtn.addEventListener("click", () => {
+    menu.classList.add("open");
+    overlay.classList.remove("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+    menu.classList.remove("open");
+    overlay.classList.add("hidden");
+});
+
+// Close when clicking outside
+overlay.addEventListener("click", () => {
+    menu.classList.remove("open");
+    overlay.classList.add("hidden");
+});
+
         
         // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
