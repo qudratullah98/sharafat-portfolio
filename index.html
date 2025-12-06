@@ -1085,24 +1085,54 @@ body.menu-open {
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
         // Mobile Menu
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
+     // Mobile Menu Functionality
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenu = document.getElementById('close-menu');
+const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+
+// Open mobile menu
+function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    mobileMenuBackdrop.classList.remove('hidden');
+    setTimeout(() => {
+        mobileMenuBackdrop.classList.add('show');
+    }, 10);
+    document.body.classList.add('menu-open');
+}
+
+// Close mobile menu
+function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileMenuBackdrop.classList.remove('show');
+    setTimeout(() => {
+        mobileMenuBackdrop.classList.add('hidden');
+    }, 300);
+    document.body.classList.remove('menu-open');
+}
+
+// Event Listeners
+mobileMenuButton.addEventListener('click', openMobileMenu);
+closeMenu.addEventListener('click', closeMobileMenu);
+mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+
+// Close menu when clicking on any menu link
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+
+// Mobile theme toggle
+if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+}
+
+// Close menu with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+    }
+});
         
         // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
