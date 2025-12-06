@@ -256,35 +256,40 @@
                 </svg>
             </button>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed  top-0 right-0 h-full w-64 glass-effect p-6 md:hidden">
-            <div class="flex justify-between items-center mb-8">
-                <span class="font-bold text-xl">Menu</span>
-                <button id="close-menu" class="p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="flex flex-col space-y-1 bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-                <a href="#home" class="py-2 hover:text-primary-500 transition-colors">Home</a>
-                <a href="#about" class="py-2 hover:text-primary-500 transition-colors">About</a>
-                <a href="#experience" class="py-2 hover:text-primary-500 transition-colors">Experience</a>
-                <a href="#projects" class="py-2 hover:text-primary-500 transition-colors">Projects</a>
-                <a href="#skills" class="py-2 hover:text-primary-500 transition-colors">Skills</a>
-                <a href="#contact" class="py-2 hover:text-primary-500 transition-colors">Contact</a>
-                
-                <div class="pt-4">
-                    <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+        <!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-black/50 hidden md:hidden"></div>
+
+       <!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl p-6 md:hidden transform translate-x-full transition-transform duration-300">
+    
+    <div class="flex justify-between items-center mb-8">
+        <span class="font-bold text-xl">Menu</span>
+        <button id="close-menu" class="p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="flex flex-col space-y-4">
+        <a href="#home" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">Home</a>
+        <a href="#about" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">About</a>
+        <a href="#experience" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">Experience</a>
+        <a href="#projects" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">Projects</a>
+        <a href="#skills" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">Skills</a>
+        <a href="#contact" class="py-2 text-gray-700 dark:text-gray-300 hover:text-primary-500">Contact</a>
+
+        <div class="pt-4">
+            <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
         </div>
+    </div>
+</div>
+
     </nav>
     
     <!-- Hero Section -->
@@ -1052,6 +1057,8 @@
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const overlay = document.getElementById("overlay");
+ 
         
         function toggleTheme() {
             if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -1074,6 +1081,10 @@
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.add('open');
         });
+               overlay.addEventListener("click", () => {
+    mobileMenu.classList.remove("open");
+    overlay.classList.add("hidden");
+});
         
         closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('open');
