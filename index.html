@@ -206,14 +206,24 @@
         }
         
         /* Mobile menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
+       /* Mobile menu styles */
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+#mobile-menu-backdrop {
+    transition: opacity 0.3s ease;
+}
+
+#mobile-menu-backdrop.show {
+    display: block;
+    opacity: 1;
+}
     </style>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 overflow-x-hidden">
@@ -249,42 +259,78 @@
                 </a>
             </div>
             
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
+         <!-- Mobile Menu Button -->
+<button id="mobile-menu-button" class="md:hidden p-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+</button>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-50 p-6 md:hidden transform translate-x-full transition-transform duration-300 ease-out">
+    <div class="flex justify-between items-center mb-8">
+        <span class="font-bold text-xl text-gray-800 dark:text-white">Menu</span>
+        <button id="close-menu" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    
+    <div class="flex flex-col space-y-4">
+        <a href="#home" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-home mr-3"></i> Home
+        </a>
+        <a href="#about" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-user mr-3"></i> About
+        </a>
+        <a href="#experience" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-briefcase mr-3"></i> Experience
+        </a>
+        <a href="#projects" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-code mr-3"></i> Projects
+        </a>
+        <a href="#skills" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-cogs mr-3"></i> Skills
+        </a>
+        <a href="#contact" class="py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors flex items-center">
+            <i class="fas fa-envelope mr-3"></i> Contact
+        </a>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 glass-effect p-6 md:hidden">
-            <div class="flex justify-between items-center mb-8">
-                <span class="font-bold text-xl">Menu</span>
-                <button id="close-menu" class="p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <div class="pt-6 border-t border-gray-200 dark:border-gray-700 mt-4">
+            <div class="flex items-center justify-between">
+                <span class="text-gray-800 dark:text-gray-200">Theme</span>
+                <button id="mobile-theme-toggle" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle text-gray-800 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                 </button>
             </div>
             
-            <div class="flex flex-col space-y-4">
-                <a href="#home" class="py-2 hover:text-primary-500 transition-colors">Home</a>
-                <a href="#about" class="py-2 hover:text-primary-500 transition-colors">About</a>
-                <a href="#experience" class="py-2 hover:text-primary-500 transition-colors">Experience</a>
-                <a href="#projects" class="py-2 hover:text-primary-500 transition-colors">Projects</a>
-                <a href="#skills" class="py-2 hover:text-primary-500 transition-colors">Skills</a>
-                <a href="#contact" class="py-2 hover:text-primary-500 transition-colors">Contact</a>
-                
-                <div class="pt-4">
-                    <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-toggle" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+            <a href="#contact" class="mt-6 block w-full py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-center font-medium">
+                <i class="fas fa-paper-plane mr-2"></i> Hire Me
+            </a>
         </div>
+    </div>
+    
+    <!-- Social Links in Mobile Menu -->
+    <div class="absolute bottom-6 left-6 right-6">
+        <div class="flex justify-center space-x-4">
+            <a href="mailto:qsharafat98@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/qudratullah-sharafat-4b185b215/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/qudratullah98" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Backdrop for mobile menu -->
+<div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"></div>
     </nav>
     
     <!-- Hero Section -->
@@ -1067,24 +1113,41 @@
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
         // Mobile Menu
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
+       // Mobile Menu with Backdrop
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const closeMenu = document.getElementById('close-menu');
+const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+
+function openMobileMenu() {
+    mobileMenu.classList.add('open');
+    mobileMenuBackdrop.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    mobileMenuBackdrop.classList.remove('show');
+    document.body.style.overflow = ''; // Re-enable scrolling
+}
+
+mobileMenuButton.addEventListener('click', openMobileMenu);
+closeMenu.addEventListener('click', closeMobileMenu);
+
+// Close menu when clicking on backdrop
+mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+
+// Close menu when clicking on a link
+document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
+
+// Close menu with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+    }
+});
         
         // Back to Top Button
         const backToTopButton = document.getElementById('back-to-top');
